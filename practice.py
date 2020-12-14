@@ -5,5 +5,5 @@ from random import *
 # random 모듈의 shuffle과 sample을 활용
 
 
-students = [0:21]
+students = [2,3,4,5]
 print(students)
