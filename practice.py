@@ -1,48 +1,8 @@
-from random import *
+# scores = {"Math":50,"Englis":70,"Code":100}
 
-# 편의상 댓글은 20명이 작성하였고 아이디는 1~20 이라고 가정
-# 댓글과 내용 모드 상관없이 무작위로 추첨하되 중복 불가
-# random 모듈의 shuffle과 sample을 활용
+# for subjects,grade in scores.items():
+  
+#     print(subjects.ljust(8),str(grade).rjust(4),sep=":") # ljust 왼쪽정렬 rjust 오른쪽 정렬 sep = 컴마 로 갈른곳마다 뭐가들어갈까 정렬뒤의 숫자는 총 몇칸중에 좌/우 로 정렬할까.
 
-
-def openAccount():
-    print("new account is made.")
-openAccount()
-def deposit(balance,money):
-    print("Deposit completed")
-    print("money on account : {0}".format(balance+money))
-    return balance + money
-def withdraw(balance,money):
-    if money > balance:
-        print("not enough balance")
-        return
-    else : 
-        print("you withdraw {0} from your account ".format(money))
-        print("Left balance {0}".format(balance - money))
-        return balance - money
-
-def withdrawNight(balance , money):
-    commission = 1
-
-    if money > (balance+commission):
-        print("not enough balance")
-        return balance
-    else : 
-        print("you withdraw {0} from your account ".format(money))
-        print("Left balance {0}".format(balance - money-commission))
-        return commission , balance - money - commission
-
-    
-    
-
-
-
-balance = 0
-balance = deposit(balance,200)
-
-balance = deposit(balance,300)
-
-balance = withdraw(balance,300)
-
-commission, balance = withdrawNight(balance,100)# 이렇게 두개의 값을 리턴받고 두개를 한번에 다른 값에 저장시켜줄수가 있음
-
+for i in range(1,21):
+    print("대기번호 : "+ str(i).zfill(3))# zfill 은 zerofill 이다 그옆에 숫자는 몇자리인지 물어보는거다. 숫자가 없는 빈곳에는 zero 로 채워준다. 
