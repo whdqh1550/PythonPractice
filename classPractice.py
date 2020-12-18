@@ -28,6 +28,8 @@ class Marine(attackUnit):
             self.damage = self.damage/2
         print("현재 공격력[{0}]".format(self.damage))
 
+
+
 m1 = Marine("marine",20,3,4)
 m1.move("1시")
 m1.attack("1시")
