@@ -38,3 +38,5 @@ while True:
     except SoldOutError as err:
         print("Error has occurred")
         print(err)
+    finally:
+        print("thank you for ordering")

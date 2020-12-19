@@ -1,3 +1,9 @@
-print("{0:0>10}".format(200))
-print("{0:^<+20,}".format(1000000000))#정렬하는방법.3자리마다 콤마 붙이기도 가능함. ^빈자리에 들어가고 < 왼쪽정렬 + 부호 붙여주고 20 자리를 총 사용함.
-print("{0:f}".format(5/3))#소숫점 출력하는방법. 
+# import travel.Thailand
+# sdetail = travel.Thailand.thailand()
+
+# sdetail.detail()
+
+import byme
+
+signiture = byme.Byme()
+signiture.sign()
