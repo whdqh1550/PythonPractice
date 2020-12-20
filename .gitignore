@@ -6,3 +6,5 @@ __pycache__/byme.cpython-39.pyc
 practice.py
 practice.py
 practice.py
+.DS_Store
+.vscode/settings.json
