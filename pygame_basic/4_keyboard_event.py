@@ -46,15 +46,29 @@ while running:
                 to_y -= 5
             elif event.key == pygame.K_DOWN:
                 to_y += 5
-        if event.type == pygame.KEYUP: # 키보드가 눌렸다가 때어지는 순간.
+        elif event.type == pygame.KEYUP: # 키보드가 눌렸다가 때어지는 순간.
             if event.key == pygame.K_LEFT or pygame.K_RIGHT:#오른쪽이나 왼쪽 방향키가 떼지는 순간 가는 힘이 ㅅ0
                 to_x = 0
             if event.key == pygame.K_UP or pygame.K_DOWN:
                 to_y = 0
-    
+        
+
 
     character_x_pos += to_x
     character_y_pos +=to_y
+
+    if character_x_pos <= 0 :
+        character_x_pos = 0
+    elif character_x_pos >= screen_width- character_width:
+        character_x_pos = screen_width - character_width
+    
+    if character_y_pos <= 0 :
+        character_y_pos = 0
+    elif character_y_pos >= screen_height - character_height:
+        character_y_pos = screen_height - character_height
+
+    
+
 
     #screen.fill((0,0,255))# RGB 값의로 해당됨 레드 0 그린 0 블루 맥스인 255 로 블루만 꽉참. 
     screen.blit(background,(0,0))#배경 그리기 # 게임이 완성되면 이 부분이 event loop 위로 올라 갈수 있는지 확인하기 
