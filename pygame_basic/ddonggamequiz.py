@@ -40,12 +40,14 @@ enemy_y_pos = 0
 
 font = pygame.font.Font(None,40)
 
-speed = 1
+speed = 0.3
 
 to_x = 0
 to_y = 0
 
 start_time = pygame.time.get_ticks()
+
+score = 0
 
 
 
@@ -67,30 +69,55 @@ while running:
        
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                to_x -= speed
-            if event.key == pygame.K_RIGHT:
+                to_x-= speed
+            elif event.key == pygame.K_RIGHT:
                 to_x += speed
-        if event.type == pygame.KEYUP:
+        elif event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or pygame.K_RIGHT:
                 to_x = 0
-    character_x_pos = to_x*deltaTime
-
-    if character_x_pos <= 0 :
-        character_x_pos = 0
-    elif character_x_pos >= (screen_width-character_width):
-        character_x_pos = screen_width - character_width
-
+        
 
 
     # 3. 게임캐릭터 위치 정의
     
+
+
+    fallingspeed = random.randrange(1,10)
+    enemy_y_pos += fallingspeed
+    character_x_pos += to_x*deltaTime
+
+    if enemy_y_pos >= screen_height:
+        enemy_y_pos = 0 - enemy_height
+        enemy_x_pos = random.randrange(0,480-enemy_width)
+        score +=1
+    if character_x_pos <= 0:
+        character_x_pos = 0
+    elif character_x_pos >= (screen_width - character_width):
+        character_x_pos = (screen_width - character_width)
+
+    
     #4. 충돌 처리
+    character_rect = character.get_rect()
+    character_rect.left = character_x_pos
+    character_rect.top = character_y_pos
+
+    enemy_rect = enemy.get_rect()
+    enemy_rect.left = enemy_x_pos
+    enemy_rect.top = enemy_y_pos
+
+    if character_rect.colliderect(enemy_rect):
+        print("game over")
+        running = False
     
     
     #5. 화면에 그리기
-    screen.blit(background(0,0))
-    screen.blit(character(((screen_width/2),(screen_height - character_height))
 
+    disscore = font.render(str(score), True,(255,255,255))
+
+    screen.blit(background,(0,0))
+    screen.blit(character,(character_x_pos,character_y_pos))
+    screen.blit(enemy,(enemy_x_pos,enemy_y_pos))
+    screen.blit(disscore,(10,10))
    
 
     pygame.display.update()# 게임 화면을 계속 다시 그리기. 반드시 들어가야함. 
