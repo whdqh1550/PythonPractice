@@ -38,9 +38,18 @@ character_height = character_size[1]
 character_x_pos = (screen_width/2)-(character_width/2)
 character_y_pos = screen_height - stage_height - character_height
 
+weapon = pygame.image.load(os.path.join(image_path,"weapon.png"))
+weapon_size = weapon.get_rect().size
+weapon_width = weapon_size[0]
+weapon_height = weapon_size[1]
+weapon_x_pos = character_x_pos
+weapon_y_pos = character_y_pos
 
 
 
+to_x = 0
+to_y = 0
+speed =0.3
 
 
 
@@ -59,8 +68,25 @@ while running:
         if event.type == pygame.QUIT:# 창이 닫히는 이벤트가 발생 하면 running 을 false 로 만들어 줘서 while loop 을 탈출하고 게임을 종료 하게된다. 
             running = False
        
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                to_x -= speed*deltaTime
+            elif event.key == pygame.K_RIGHT:
+                to_x += speed*deltaTime
+            elif event.key == pygame.K_SPACE:
+                to_y = -3
+        elif event.type == pygame.KEYUP:
+            if event.key == pygame.K_LEFT or pygame.K_RIGHT:
+                to_x = 0
+                
+    character_x_pos += to_x
+    weapon_y_pos += to_y
+    if weapon_y_pos <= 0:
+        weapon_y_pos = character_y_pos
+        to_y = 0
 
     # 3. 게임캐릭터 위치 정의
+   
     
     #4. 충돌 처리
     
@@ -68,6 +94,7 @@ while running:
     #5. 화면에 그리기
 
     screen.blit(background,(0,0))
+    screen.blit(weapon,(character_x_pos,weapon_y_pos))
     screen.blit(stage,(0,screen_height-stage_height))
     screen.blit(character,(character_x_pos,character_y_pos))
     
