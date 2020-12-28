@@ -50,6 +50,7 @@ weapon_y_pos = character_y_pos
 to_x = 0
 to_y = 0
 speed =0.3
+shot_pos = character_x_pos
 
 
 
@@ -75,14 +76,18 @@ while running:
                 to_x += speed*deltaTime
             elif event.key == pygame.K_SPACE:
                 to_y = -3
+                shot_pos = character_x_pos
+
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or pygame.K_RIGHT:
                 to_x = 0
                 
     character_x_pos += to_x
+    weapon_x_pos +=to_x
     weapon_y_pos += to_y
     if weapon_y_pos <= 0:
-        weapon_y_pos = character_y_pos
+        weapon_y_pos = screen_height
+        shot_pos = character_x_pos
         to_y = 0
 
     # 3. 게임캐릭터 위치 정의
@@ -94,7 +99,7 @@ while running:
     #5. 화면에 그리기
 
     screen.blit(background,(0,0))
-    screen.blit(weapon,(character_x_pos,weapon_y_pos))
+    screen.blit(weapon,(shot_pos,weapon_y_pos))
     screen.blit(stage,(0,screen_height-stage_height))
     screen.blit(character,(character_x_pos,character_y_pos))
     
